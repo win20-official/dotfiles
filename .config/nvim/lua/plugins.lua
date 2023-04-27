@@ -21,6 +21,17 @@ local plugins = {
 	"neovim/nvim-lspconfig",
 	"nvim-treesitter/nvim-treesitter",
 	"andweeb/presence.nvim",
+	"jose-elias-alvarez/null-ls.nvim",
+
+	{
+		"CRAG666/code_runner.nvim",
+		config = true
+	},
+
+	{
+		"akinsho/bufferline.nvim",
+		version = "*"
+	},
 
 	{
 		"ms-jpq/coq_nvim", branch = "coq"

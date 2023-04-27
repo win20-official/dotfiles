@@ -5,11 +5,24 @@ vim.cmd [[augroup COQ
 augroup END]]
 
 local coq = require "coq"
+local null_ls = require "null-ls"
 require "lualine".setup()
 require "nvim-tree".setup()
 require "nvim-web-devicons".setup()
 require "mason".setup()
 require "presence".setup({})
+
+require "bufferline".setup {
+	options = {
+		diagnostics = "nvim_lsp"
+	}
+}
+
+null_ls.setup({
+	sources = {
+		null_ls.builtins.formatting.prettier
+	}
+})
 
 require "lspconfig".pyright.setup(
 	coq.lsp_ensure_capabilities {}
@@ -44,6 +57,7 @@ require "dashboard".setup {
 }
 
 require "lspconfig".lua_ls.setup {
+	coq.lsp_ensure_capabilities {},
 	settings = {
 		Lua = {
 			diagnostics = {
@@ -60,7 +74,7 @@ require "nvim-treesitter.configs".setup {
 	  highlight = {
 		  enable = true
 	  }
-  }
+}
 
 require "mason-lspconfig".setup({
 	  ensure_installed = { "lua_ls", "pyright" }
